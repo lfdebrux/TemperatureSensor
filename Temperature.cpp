@@ -8,12 +8,8 @@
 #include "Energia.h"
 #include "Temperature.h"
 
-Temperature::Temperature()
+Temperature::Temperature() : gain(40), offset(83591)
 {
-	// default values of gain and offset
-	gain = 40;
-	offset = 83591;
-
 	// make reading to allow ADC to settle
 	read();
 }
@@ -61,12 +57,12 @@ uint16_t Temperature::readSensor()
 }
 
 __attribute__((interupt(ADC12_VECTOR)))
-void Temperature::ISR(void)
+void Temperature::ADC12_ISR(void)
 {
 		switch(ADC12IV,36) {
-		case  0: break; // No interrupt
-		case  2: break; // conversion result overflow
-		case  4: break; // conversion time overflow
+		case 0: break; // No interrupt
+		case 2: break; // conversion result overflow
+		case 4: break; // conversion time overflow
 		case 6:
 				// reading ready, return to active mode
 				 __bic_SR_register_on_exit(CPUOFF);

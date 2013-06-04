@@ -31,7 +31,7 @@ class Temperature
 		int32_t offset;
 		// void calibrate();
 		uint16_t readSensor();
-		void ISR(void);
+		void ADC12_ISR(void);
 };
 
 #endif
