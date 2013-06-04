@@ -5,13 +5,11 @@
 	souvenir LEDs
 */
 
-#include <Temperature.h>
+#include <temp.h>
 
 #define TEMP_LO 10
 #define TEMP_HI 20
 #define TEMP_INC (TEMP_HI - TEMP_LO)/5
-
-Temperature temp;
 
 void setup()
 {
@@ -21,11 +19,13 @@ void setup()
 	pinMode(3, OUTPUT);
 	pinMode(2, OUTPUT);
 	pinMode(1, OUTPUT);
+
+	readTemp(); // first reading is usually spurious
 }
 
 void loop()
 {
-	showTemp(temp.read());
+	showTemp(readTemp());
 
 	delay(1000);
 }

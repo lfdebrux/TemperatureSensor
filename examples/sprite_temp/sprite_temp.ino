@@ -4,19 +4,19 @@
 	with the Sprite developer kit
 */
 
-#include <Temperature.h>
-
-Temperature temp;
+#include <temp.h>
 
 void setup()
 {
 	Serial.begin(9600);
+
+	readTemp(); // first reading is usually spurious
 }
 
 void loop()
 {
 	Serial.print("Temperature is approximately");
-	Serial.print(temp.read());
+	Serial.print(readTemp());
 	Serial.println("degrees Celsius");
 
 	delay(1000);
