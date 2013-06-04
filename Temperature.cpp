@@ -13,6 +13,9 @@ Temperature::Temperature()
 	// default values of gain and offset
 	gain = 40;
 	offset = 83591;
+
+	// make reading to allow ADC to settle
+	read();
 }
 
 // TODO
