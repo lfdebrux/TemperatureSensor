@@ -4,8 +4,10 @@
 // need cc430f5137 with 12-bit ADC
 #if defined(__MSP430_HAS_ADC12_PLUS__)
 
-gain = 40;
-offset = 83591;
+int8_t gain = 40;
+int32_t offset = 83591;
+
+uint16_t readSensor(void);
 
 int16_t readTemp(void)
 {
@@ -45,7 +47,7 @@ uint16_t readSensor(void)
 }
 
 __attribute__((interrupt(ADC12_VECTOR)))
-void ADC12_ISR()
+void ADC12_ISR(void)
 {
 		switch(ADC12IV,36) {
 		case 0: break; // No interrupt
