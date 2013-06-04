@@ -11,7 +11,7 @@
 Temperature::Temperature() : gain(40), offset(83591)
 {
 	// make reading to allow ADC to settle
-	read();
+	readSensor();
 }
 
 // TODO
@@ -57,7 +57,7 @@ uint16_t Temperature::readSensor()
 }
 
 __attribute__((interupt(ADC12_VECTOR)))
-void Temperature::ADC12_ISR(void)
+void Temperature::ADC12_ISR()
 {
 		switch(ADC12IV,36) {
 		case 0: break; // No interrupt

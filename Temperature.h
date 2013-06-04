@@ -27,5 +27,4 @@ class Temperature
 };
 
 #endif
-
 #endif
