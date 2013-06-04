@@ -14,6 +14,8 @@ int16_t temp;
 
 int16_t readTemp(void);
 
+void calibrateTemp(void);
+
 #ifdef __cplusplus
 }
 #endif
