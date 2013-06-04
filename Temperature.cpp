@@ -23,7 +23,7 @@ Temperature::Temperature() : gain(40), offset(83591)
 
 int16_t Temperature::read()
 {
-	temp = ((uint32_t)readTemp()*gain - offset) >> 8;
+	temp = ((uint32_t)readSensor()*gain - offset) >> 8;
 	return temp;
 }
 
@@ -54,9 +54,11 @@ uint16_t Temperature::readSensor()
 	// power off modules
 	ADC12CTL0 &= ~ADC12ON;
 	REFCTL0 &= ~REFON;
+
+	return ADC12MEM0;
 }
 
-__attribute__((interupt(ADC12_VECTOR)))
+__attribute__((interrupt(ADC12_VECTOR)))
 void Temperature::ADC12_ISR()
 {
 		switch(ADC12IV,36) {
