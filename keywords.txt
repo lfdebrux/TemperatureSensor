@@ -1,2 +1,2 @@
-Temperature	KEYWORD1
-read		KEYWORD2
+readTemp		KEYWORD2
+calibrateTemp	KEYWORD2
