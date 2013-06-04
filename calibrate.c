@@ -11,6 +11,6 @@ void calibrateTemp(void)
 	const uint16_t * temp35 = (const uint16_t *) 0x1a1a; // adc value at 35 degrees C
 	const uint16_t * temp85 = (const uint16_t *) 0x1a1c; // adc value at 85 degrees C
 
-	gain = 12800.0/(temp85 - temp35); // (2^8)*(85 - 35)/(temp85 - temp35)
-	offset = gain*temp35 - 8960 + 128; // 2^8*c = 2^8*m*x - 2^8*8*y
+	gain = 12800.0/(*temp85 - *temp35); // (2^8)*(85 - 35)/(temp85 - temp35)
+	offset = (int32_t)(*temp35)*gain - 8960 + 128; // 2^8*c = 2^8*m*x + 2^8*8*y + 0.5*2^8
 }
