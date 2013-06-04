@@ -34,9 +34,9 @@ uint16_t Temperature::readSensor()
 	ADC12CTL2 |= ADC12RES_2; // 12-bit reading
 
 	while(REFCTL0 & REFGENBUSY); // wait until free
-	REFCTL0 |= INTERNAL1V5 & REF_MASK;
-	ADC12MCTL0 = TEMPSENSOR | (INTERNAL1V5 & REFV_MASK);
-	ADC12CTL0 = ADC12ON | ADC12SHT0_4;
+	REFCTL0 |= REFON | REFVSEL_0; // use internal 1V5 ref
+	ADC12MCTL0 = TEMPSENSOR | ADC12SREF_1;
+	ADC12CTL0 = ADC12ON | ADC12SHT0_4; // sample time 64 * clock
 
 	// setup interrupts
 	ADC12IFG = 0;
