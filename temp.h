@@ -10,6 +10,9 @@
 extern "C" {
 #endif
 
+extern int8_t gain;
+extern int32_t offset;
+
 int16_t temp;
 
 int16_t readTemp(void);
