@@ -1,0 +1,2 @@
+Temperature	KEYWORD1
+read		KEYWORD2
