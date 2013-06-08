@@ -1,6 +1,8 @@
 /*
 	calibrate.c - uses the data points in the cc430f5137 TLV to find a linear
 	relationship between ADC value and temperature in degrees C.
+	Created by Laurence de Bruxelles, June 2013
+	Released into the public domain
 */
 
 #include "Energia.h"

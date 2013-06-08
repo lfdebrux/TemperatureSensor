@@ -1,3 +1,10 @@
+/*
+	temp.c - Library to read internal temperature sensor
+	of cc430f5137 in the Kicksat Sprite. Based on Energia wiring_analog.c
+	Written by Laurence de Bruxelles, June 2013
+	Released into the public domain
+*/
+
 #include "Energia.h"
 #include "temp.h"
 
@@ -18,12 +25,12 @@ int16_t readTemp(void)
 uint16_t readSensor(void)
 {
 	ADC12CTL0 &= ~ADC12ENC;
-	ADC12CTL1 = ADC12SSEL_0 | ADC12DIV_4 | ADC12SHP;
-	ADC12CTL2 |= ADC12RES_2; // 12-bit reading
+	ADC12CTL1 = ADC12SSEL_0 | ADC12DIV_4 | ADC12SHP; // clock settings
+	ADC12CTL2 |= ADC12RES_2; // 12-bit resolution
 
 	while(REFCTL0 & REFGENBUSY); // wait until free
 	REFCTL0 |= REFON | REFVSEL_0; // use internal 1V5 ref
-	ADC12MCTL0 = TEMPSENSOR | ADC12SREF_1;
+	ADC12MCTL0 = TEMPSENSOR | ADC12SREF_1; // set pin and ref
 	ADC12CTL0 = ADC12ON | ADC12SHT0_4; // sample time 64 * clock
 
 	// setup interrupts
@@ -31,7 +38,7 @@ uint16_t readSensor(void)
 	ADC12IE |= ADC12IE0;
 
 	__delay_cycles(128);
-	ADC12CTL0 |= ADC12ENC | ADC12SC;
+	ADC12CTL0 |= ADC12ENC | ADC12SC;  // start converting
 	while (ADC12CTL1 & ADC12BUSY) {
 		// wait in LPM0 until read & converted
 		__bis_SR_register(CPUOFF + GIE);
