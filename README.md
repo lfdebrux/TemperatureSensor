@@ -6,9 +6,9 @@ Library to read cc430f5137 in Kicksat Sprite
 Install to the Energia Libraries folder.
 
 Add
-
-`#include <temp.h>`
-
+~~~~~~~~
+#include <temp.h>
+~~~~~~~~
 to the top of your code to use it.
 
 `readTemp()` and `readTempX10()` give the temperature in units of degrees Centigrade.
