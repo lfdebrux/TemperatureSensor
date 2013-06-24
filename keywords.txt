@@ -1,2 +1,4 @@
-readTemp		KEYWORD2
+readTemp	KEYWORD2
+readTempX10	KEYWORD2
 calibrateTemp	KEYWORD2
+setGainOffset	KEYWORD2

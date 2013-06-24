@@ -19,7 +19,7 @@ void loop()
 	Serial.print(temp / 10);
 	Serial.print('.');
 	Serial.print(temp % 10);
-	Serial.println("degrees Celsius");
+	Serial.println(" degrees Celsius");
 
 	delay(1000);
 }
