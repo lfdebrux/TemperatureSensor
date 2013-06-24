@@ -8,7 +8,7 @@
 #include "Energia.h"
 #include "temp.h"
 
-void calibrateTemp(int8_t new_gain, int32_t new_offset)
+void setGainOffset(int8_t new_gain, int32_t new_offset)
 {
 	gain = new_gain;
 	offset = new_offset;
