@@ -10,7 +10,8 @@ void setup()
 {
 	Serial.begin(9600);
 
-	readTemp(); // first reading is usually spurious
+	calibrateTemp()
+	readTempX10(); // first reading is usually spurious
 }
 
 void loop()
