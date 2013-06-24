@@ -25,7 +25,7 @@ int16_t readTemp(void)
 int32_t readTempX10(void)
 {
 	temp = ((uint32_t)readSensor()*gain*10 - offset) >> 8;
-	return tem
+	return temp;
 }
 
 uint16_t readSensor(void)
