@@ -22,6 +22,12 @@ int16_t readTemp(void)
 	return temp;
 }
 
+int32_t readTempX10(void)
+{
+	temp = ((uint32_t)readSensor()*gain*10 - offset) >> 8;
+	return tem
+}
+
 uint16_t readSensor(void)
 {
 	ADC12CTL0 &= ~ADC12ENC;
