@@ -24,7 +24,9 @@ extern int32_t offset;
 // visible interface
 int16_t temp;
 int16_t readTemp(void);
+int32_t readTempX10(void);
 void calibrateTemp(void);
+void calibrateTemp(new_gain,new_offset);
 
 #ifdef __cplusplus
 }
