@@ -15,8 +15,10 @@ void setup()
 
 void loop()
 {
-	Serial.print("Temperature is approximately");
-	Serial.print(readTemp());
+	temp = readTempX10();
+	Serial.print(temp / 10);
+	Serial.print('.');
+	Serial.print(temp % 10);
 	Serial.println("degrees Celsius");
 
 	delay(1000);
