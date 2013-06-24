@@ -18,13 +18,13 @@ uint16_t readSensor(void);
 
 int16_t readTemp(void)
 {
-	temp = ((uint32_t)readSensor()*gain - offset) >> 8;
+	int16_t temp = ((uint32_t)readSensor()*gain - offset) >> 8;
 	return temp;
 }
 
 int32_t readTempX10(void)
 {
-	temp = ((uint32_t)readSensor()*gain*10 - offset) >> 8;
+	int32_t temp = ((uint32_t)readSensor()*gain*10 - offset) >> 8;
 	return temp;
 }
 
