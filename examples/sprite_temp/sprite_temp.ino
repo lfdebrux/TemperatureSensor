@@ -6,11 +6,13 @@
 
 #include <temp.h>
 
+int32_t temp;
+
 void setup()
 {
 	Serial.begin(9600);
 
-	calibrateTemp()
+	calibrateTemp();
 	readTempX10(); // first reading is usually spurious
 }
 
