@@ -8,27 +8,47 @@
 #include "Energia.h"
 #include "temp.h"
 
+#include "TI_USCI_I2C_master.h"
+
 // need cc430f5137 with 12-bit ADC
 #if defined(__MSP430_HAS_ADC12_PLUS__)
 
 int8_t gain = 40;
 int32_t offset = 83591;
 
-uint16_t readSensor(void);
+uint16_t cc430Read(void);
+
+unsigned char rx_buf[1];
+unsigned char tx_buf[2];
 
 int16_t readTemp(void)
 {
-	int16_t temp = ((uint32_t)readSensor()*gain - offset) >> 8;
+	int16_t temp = ((uint32_t)cc430Read()*gain - offset) >> 8;
 	return temp;
 }
 
 int32_t readTempX10(void)
 {
-	int32_t temp = (10*((uint32_t)readSensor()*gain - offset)) >> 8;
+	int32_t temp = (10*((uint32_t)cc430Read()*gain - offset)) >> 8;
 	return temp;
 }
 
-uint16_t readSensor(void)
+int16_t itg3200Read(void)
+{
+	tx_buf[0] = 0x1B; // First temperature register
+
+	TI_USCI_I2C_transmitinit(GYRO_ADDRESS, I2C_PRESCALE);
+	TI_USCI_I2C_transmit(tx_buf, 1);
+
+	TI_USCI_I2C_receiveinit(GYRO_ADDRESS, I2C_PRESCALE);
+	TI_USCI_I2C_receive(rx_buf, 2);
+
+	int16_t temp = ((int)rx_buf[0]<<8) + (int)rx_buf[1];
+	temp = 35 + (temp+13200)/280; // conversion according to datasheet
+	return temp;
+}
+
+uint16_t cc430Read(void)
 {
 	ADC12CTL0 &= ~ADC12ENC;
 	ADC12CTL1 = ADC12SSEL_0 | ADC12DIV_4 | ADC12SHP; // clock settings
@@ -59,8 +79,8 @@ uint16_t readSensor(void)
 	return ADC12MEM0;
 }
 
-__attribute__((interrupt(ADC12_VECTOR)))
-void ADC12_ISR(void)
+// __attribute__((interrupt(ADC12_VECTOR)))
+interrupt(ADC12_VECTOR) ADC12_ISR(void)
 {
 		switch(ADC12IV,36) {
 		case 0: break; // No interrupt

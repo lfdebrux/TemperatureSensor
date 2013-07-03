@@ -13,6 +13,8 @@
 // need cc430f5137 with 12-bit ADC
 #if defined(__MSP430_HAS_ADC12_PLUS__)
 
+#define GYRO_ADDRESS 0x68 // for temperature sensor in ITG-3200
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -24,6 +26,7 @@ extern int32_t offset;
 // visible interface
 int16_t readTemp(void);
 int32_t readTempX10(void);
+int16_t itg3200Read(void);
 void calibrateTemp(void);
 void setGainOffset(int8_t new_gain,int32_t new_offset);
 
