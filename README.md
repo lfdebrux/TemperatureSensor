@@ -1,7 +1,7 @@
 TemperatureSensor
 =================
 
-Library to read the internal temperature sensor in the TI cc430f5137 used on the Kicksat Sprite.
+Library to read the internal temperature sensor in the TI cc430f5137 and the InvenSense ITG-3200 used on the Kicksat Sprite.
 
 Install to the Energia Libraries folder.
 
