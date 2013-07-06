@@ -7,8 +7,8 @@ Install to the Energia Libraries folder.
 
 Add `#include <temp.h>` to the top of your code to use it.
 
-`readTemp()` and `readTempX10()` give the temperature in units of degrees Centigrade. `readTempX10()` is multiplied by 10, so you get one decimal place precision.
+`int32_t mainTempRead(void)` and `int32_t gyroTempRead(void)` give the temperature in units of degrees Centigrade, from the cc430 processor and the itg3200 gyroscope, in integer form. `temp.h` has a global variable `premult` which can be changed to multiply the reading, in case you want temperature to higher precision
 
-`calibrateTemp()` and `setGainOffset(gain, offset)` adjust the mapping from ADUs to degrees. The function is a simple linear fit, `Temperature = ADU * gain + offset`.
+`mainTempCalibrate()` and `setMainGainOffset(gain, offset)` adjust the mapping from ADUs to degrees for the cc430. The function is a simple linear fit, `Temperature = ADU * gain + offset`.
 
 Examples are included and can be opened using Energia, simply go to `File->Examples->TemperatureSensor`.

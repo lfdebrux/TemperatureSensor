@@ -20,12 +20,14 @@ void setup()
 	pinMode(2, OUTPUT);
 	pinMode(1, OUTPUT);
 
-	readTemp(); // first reading is usually spurious
+	mainTempCalibrate();
+
+	mainTempRead(); // first reading is usually spurious
 }
 
 void loop()
 {
-	showTemp(readTemp());
+	showTemp(mainTempRead());
 
 	delay(1000);
 }

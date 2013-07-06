@@ -1,4 +1,4 @@
-readTemp	KEYWORD2
-readTempX10	KEYWORD2
-calibrateTemp	KEYWORD2
-setGainOffset	KEYWORD2
+mainTempRead	KEYWORD2
+gyroTempRead	KEYWORD2
+mainTempCalibrate	KEYWORD2
+setMainGainOffset	KEYWORD2
