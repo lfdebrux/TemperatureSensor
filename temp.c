@@ -13,10 +13,12 @@
 // need cc430f5137 with 12-bit ADC
 #if defined(__MSP430_HAS_ADC12_PLUS__)
 
+// defualt settings
 int8_t gain = 40;
 int32_t offset = 83591;
 int32_t premult = 1;
 
+// private functions
 int16_t itg3200Read(void);
 uint16_t cc430Read(void);
 

@@ -12,17 +12,27 @@ void setup()
 {
 	Serial.begin(9600);
 
-	calibrateTemp();
-	readTempX10(); // first reading is usually spurious
+	premult = 10;
+
+	mainTempCalibrate();
+	mainTempRead(); // first reading is usually spurious
 }
 
 void loop()
 {
-	temp = readTempX10();
+	temp = mainTempRead();
+	Serial.print("main: ");
 	Serial.print(temp / 10);
 	Serial.print('.');
 	Serial.print(temp % 10);
-	Serial.println(" degrees Celsius");
+	Serial.print(" degrees, ");
+
+	temp = gyroTempRead();
+	Serial.print("gyro: ");
+	Serial.print(temp / 10);
+	Serial.print('.');
+	Serial.print(temp % 10);
+	Serial.println(" degrees");
 
 	delay(1000);
 }

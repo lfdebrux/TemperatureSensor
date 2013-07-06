@@ -22,13 +22,13 @@ extern "C" {
 // global variables
 extern int8_t gain;
 extern int32_t offset;
+extern int32_t premult;
 
 // visible interface
-int16_t readTemp(void);
-int32_t readTempX10(void);
-int16_t itg3200Read(void);
-void calibrateTemp(void);
-void setGainOffset(int8_t new_gain,int32_t new_offset);
+int32_t mainTempRead(void);
+int32_t gyroTempRead(void);
+void mainTempCalibrate(void);
+void setMainGainOffset(int8_t new_gain,int32_t new_offset);
 
 #ifdef __cplusplus
 }

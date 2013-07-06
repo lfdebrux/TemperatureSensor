@@ -8,13 +8,13 @@
 #include "Energia.h"
 #include "temp.h"
 
-void setGainOffset(int8_t new_gain, int32_t new_offset)
+void setMainGainOffset(int8_t new_gain, int32_t new_offset)
 {
 	gain = new_gain;
 	offset = new_offset;
 }
 
-void calibrateTemp(void)
+void mainTempCalibrate(void)
 {
 	const uint16_t * temp35 = (const uint16_t *) 0x1a1a; // adc value at 35 degrees C
 	const uint16_t * temp85 = (const uint16_t *) 0x1a1c; // adc value at 85 degrees C
