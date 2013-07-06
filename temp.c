@@ -15,21 +15,23 @@
 
 int8_t gain = 40;
 int32_t offset = 83591;
+int32_t premult = 1;
 
+int16_t itg3200Read(void);
 uint16_t cc430Read(void);
 
 unsigned char rx_buf[1];
 unsigned char tx_buf[2];
 
-int16_t readTemp(void)
+int32_t mainTempRead(void)
 {
-	int16_t temp = ((uint32_t)cc430Read()*gain - offset) >> 8;
+	int32_t temp = (premult*((uint32_t)cc430Read()*gain - offset)) >> 8;
 	return temp;
 }
 
-int32_t readTempX10(void)
+int32_t gyroTempRead(void)
 {
-	int32_t temp = (10*((uint32_t)cc430Read()*gain - offset)) >> 8;
+	int32_t temp = premult*35 + premult*((int32_t)itg3200Read()+13200)/280; // conversion according to datasheet
 	return temp;
 }
 
@@ -44,7 +46,7 @@ int16_t itg3200Read(void)
 	TI_USCI_I2C_receive(rx_buf, 2);
 
 	int16_t temp = ((int)rx_buf[0]<<8) + (int)rx_buf[1];
-	temp = 35 + (temp+13200)/280; // conversion according to datasheet
+	
 	return temp;
 }
 
